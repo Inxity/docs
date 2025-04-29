@@ -1,0 +1,185 @@
+---
+title: '🐧 Linux'ta Port Yönetimi'
+description: ''
+icon: ''
+---
+
+# 🐧 Linux'ta Port Yönetimi
+
+Bilgisayarımızı veya sunucumuzu büyük bir apartman olarak düşünelim. Bu apartmanın birçok kapısı var. Her kapı belirli bir şey için kullanılır.
+
+Mesela:
+* 80 numaralı kapı genelde web siteleri içindir.
+* 25565 numaralı kapı Minecraft oyun sunucuları içindir.
+* 22 numaralı kapı ise uzaktan bağlanmak için kullanılır.
+
+İşte bilgisayarlardaki bu "kapılara" port denir.
+Portları açarsak, arkadaşlarınız, oyuncularınız veya başka insanlar gelebilir. Portları kapatırsak, kimse içeri giremez.
+
+---
+
+## 📌 Port Nedir?
+
+Portlar, bilgisayarınızın veya sunucunuzun dış dünya ile haberleşmesini sağlayan kapılar gibidir.
+
+Örneğin:
+
+- **80:** Web sitesi (HTTP)
+- **22:** Uzaktan bağlantı (SSH)
+- **25565:** Minecraft oyun sunucusu
+
+Portlar **TCP** veya **UDP** olabilir:
+
+- **TCP**: Web siteleri, SSH vb. için kullanılır.
+- **UDP**: Oyunlar, video ve ses bağlantıları için kullanılır.
+
+---
+
+## 🔧 Hangi Linux İçin Hangi Araç?
+
+| Linux Dağıtımı                          | Önerilen Firewall Aracı         |
+|----------------------------------------|----------------------------------|
+| Ubuntu, Debian, Linux Mint             | ✅ **UFW**                       |
+| CentOS, Fedora, AlmaLinux, Rocky Linux | ✅ **firewalld** veya **iptables** |
+| Diğer Tüm Linux Dağıtımları            | ✅ **iptables**                  |
+
+---
+
+## 🟢 Ubuntu / Debian (UFW Kullanımı)
+
+### 🔍 UFW Durumunu Kontrol Etme
+
+```bash
+sudo ufw status
+```
+
+**Eğer `inactive` yazıyorsa aktif etmek için:**
+
+```bash
+sudo ufw enable
+```
+
+### 🔓 Port Açma
+
+Aşağıdaki komutta `[port-numarası]` yerine port numarasını, `[tcp veya udp]` yerine ise gerekli protokolü yazın:
+
+```bash
+sudo ufw allow [port-numarası]/[tcp veya udp]
+```
+
+**Örnekler:**
+
+Web (HTTP) için:
+
+```bash
+sudo ufw allow 80/tcp
+```
+
+Minecraft sunucusu için:
+
+```bash
+sudo ufw allow 25565/tcp
+sudo ufw allow 25565/udp
+```
+
+### 🔒 Port Kapatma
+
+```bash
+sudo ufw deny [port-numarası]/[tcp veya udp]
+```
+
+**Örnek:**
+
+```bash
+sudo ufw deny 25565/tcp
+sudo ufw deny 25565/udp
+```
+
+---
+
+## 🟡 CentOS / Fedora / AlmaLinux (firewalld Kullanımı)
+
+### 🔓 Port Açma
+
+```bash
+sudo firewall-cmd --permanent --add-port=[port-numarası]/[tcp veya udp]
+sudo firewall-cmd --reload
+```
+
+**Örnek:**
+
+```bash
+sudo firewall-cmd --permanent --add-port=25565/tcp
+sudo firewall-cmd --permanent --add-port=25565/udp
+sudo firewall-cmd --reload
+```
+
+### 🔒 Port Kapatma
+
+```bash
+sudo firewall-cmd --permanent --remove-port=[port-numarası]/[tcp veya udp]
+sudo firewall-cmd --reload
+```
+
+---
+
+## 🔴 Tüm Dağıtımlar (iptables Kullanımı)
+
+### 🔓 Port Açma
+
+```bash
+sudo iptables -A INPUT -p [tcp veya udp] --dport [port-numarası] -j ACCEPT
+```
+
+**Örnek:**
+
+```bash
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+```
+
+### 🔒 Port Kapatma
+
+```bash
+sudo iptables -A INPUT -p [tcp veya udp] --dport [port-numarası] -j DROP
+```
+
+**Örnek:**
+
+```bash
+sudo iptables -A INPUT -p tcp --dport 80 -j DROP
+```
+
+### 💾 Kuralları Kalıcı Yapmak
+
+**Ubuntu / Debian:**
+
+```bash
+sudo iptables-save > /etc/iptables/rules.v4
+```
+
+**CentOS / RHEL:**
+
+```bash
+sudo service iptables save
+```
+
+---
+
+## 🔎 Açık Portları Kontrol Etme
+
+```bash
+sudo netstat -tuln
+```
+
+veya
+
+```bash
+sudo ss -tuln
+```
+
+---
+
+## ⚠️ Güvenlik Tavsiyeleri
+
+- Gereksiz portları açık bırakmayın.
+- Sadece kullandığınız uygulamalar için port açın.
