@@ -1,6 +1,6 @@
 ---
-title: '🐧 Linux'ta Port Yönetimi'
-description: "Bu rehberde Linux işletim sisteminde port açma ve kapama işlemlerini en basit haliyle öğreneceksiniz."
+title: "🐧 Linux'ta Port Yönetimi"
+description: "Bilgisayarımızı veya sunucumuzu büyük bir apartman olarak düşünelim. Bu apartmanın birçok kapısı var. Her kapı belirli bir şey için kullanılır."
 ---
 
 # 🐧 Linux'ta Port Yönetimi
@@ -8,9 +8,10 @@ description: "Bu rehberde Linux işletim sisteminde port açma ve kapama işleml
 Bilgisayarımızı veya sunucumuzu büyük bir apartman olarak düşünelim. Bu apartmanın birçok kapısı var. Her kapı belirli bir şey için kullanılır.
 
 Mesela:
-* 80 numaralı kapı genelde web siteleri içindir.
-* 25565 numaralı kapı Minecraft oyun sunucuları içindir.
-* 22 numaralı kapı ise uzaktan bağlanmak için kullanılır.
+
+- 80 numaralı kapı genelde web siteleri içindir.
+- 25565 numaralı kapı Minecraft oyun sunucuları içindir.
+- 22 numaralı kapı ise uzaktan bağlanmak için kullanılır.
 
 İşte bilgisayarlardaki bu "kapılara" port denir.
 Portları açarsak, arkadaşlarınız, oyuncularınız veya başka insanlar gelebilir. Portları kapatırsak, kimse içeri giremez.
@@ -36,11 +37,11 @@ Portlar **TCP** veya **UDP** olabilir:
 
 ## 🔧 Hangi Linux İçin Hangi Araç?
 
-| Linux Dağıtımı                          | Önerilen Firewall Aracı         |
-|----------------------------------------|----------------------------------|
-| Ubuntu, Debian, Linux Mint             | ✅ **UFW**                       |
+| Linux Dağıtımı                         | Önerilen Firewall Aracı           |
+| -------------------------------------- | --------------------------------- |
+| Ubuntu, Debian, Linux Mint             | ✅ **UFW**                         |
 | CentOS, Fedora, AlmaLinux, Rocky Linux | ✅ **firewalld** veya **iptables** |
-| Diğer Tüm Linux Dağıtımları            | ✅ **iptables**                  |
+| Diğer Tüm Linux Dağıtımları            | ✅ **iptables**                    |
 
 ---
 
@@ -52,7 +53,7 @@ Portlar **TCP** veya **UDP** olabilir:
 sudo ufw status
 ```
 
-**Eğer `inactive` yazıyorsa aktif etmek için:**
+**`Eğer inactive yazıyorsa aktif etmek için:`**
 
 ```bash
 sudo ufw enable
