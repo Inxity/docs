@@ -1,8 +1,8 @@
+
 ---
 title: "🐧 Linux'ta Port Yönetimi"
 description: "Bilgisayarımızı veya sunucumuzu büyük bir apartman olarak düşünelim. Bu apartmanın birçok kapısı var. Her kapı belirli bir şey için kullanılır."
 ---
-
 
 Mesela:
 
@@ -10,8 +10,9 @@ Mesela:
 - 25565 numaralı kapı Minecraft oyun sunucuları içindir.
 - 22 numaralı kapı ise uzaktan bağlanmak için kullanılır.
 
-İşte bilgisayarlardaki bu "kapılara" port denir.
-Portları açarsak, arkadaşlarınız, oyuncularınız veya başka insanlar gelebilir. Portları kapatırsak, kimse içeri giremez.
+İşte bilgisayarlardaki bu "kapılara" port denir.  
+Portları açarsak, arkadaşlarınız, oyuncularınız veya başka insanlar gelebilir.  
+Portları kapatırsak, kimse içeri giremez.
 
 ---
 
@@ -29,6 +30,33 @@ Portlar **TCP** veya **UDP** olabilir:
 
 - **TCP**: Web siteleri, SSH vb. için kullanılır.
 - **UDP**: Oyunlar, video ve ses bağlantıları için kullanılır.
+
+---
+
+## ⚠️ Dikkat: SSH ve FTP Portlarını Önce Açın!
+
+Herhangi bir port yöneticisini (`ufw`, `firewalld`, `iptables`) etkinleştirmeden önce **SSH (22) ve varsa FTP (21)** portlarını açmanız **çok önemlidir**.  
+Aksi halde, bu portlar varsayılan olarak kapalı olduğundan dolayı sunucunuza **uzaktan erişiminiz kesilebilir.**
+
+### ✅ UFW kullanıyorsanız:
+```bash
+sudo ufw allow 22/tcp
+sudo ufw allow 21/tcp
+```
+> Ardından güvenle `sudo ufw enable` komutunu çalıştırabilirsiniz.
+
+### ✅ firewalld kullanıyorsanız:
+```bash
+sudo firewall-cmd --permanent --add-port=22/tcp
+sudo firewall-cmd --permanent --add-port=21/tcp
+sudo firewall-cmd --reload
+```
+
+### ✅ iptables kullanıyorsanız:
+```bash
+sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 21 -j ACCEPT
+```
 
 ---
 
