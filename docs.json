@@ -11,29 +11,17 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Rehberler",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Linux Rehberleri",
             "pages": [
-              "introduction",
-              "quickstart",
-              "development"
+              "treas/sunucu",
+              "treas/port"
             ]
           },
           {
-            "group": "Essentials",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/settings",
-              "essentials/navigation",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "Treas test",
+            "group": "Windows Rehberleri",
             "pages": [
               "treas/sunucu",
               "treas/port"
@@ -41,44 +29,9 @@
           }
         ]
       },
-      {
-        "tab": "API Reference",
-        "groups": [
-          {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
     ],
     "global": {
       "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
       ]
     }
   },
@@ -89,21 +42,19 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Mail",
+        "href": "mailto:iletisim@treas.host"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Müşteri Paneli",
+      "href": "https://panel.treas.host"
     }
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "discord": "https://discord.gg/treashost"
     }
   }
 }
