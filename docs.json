@@ -29,10 +29,7 @@
           }
         ]
       },
-    ],
-    "global": {
-      "anchors": []
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
