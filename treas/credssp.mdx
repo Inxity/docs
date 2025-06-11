@@ -1,0 +1,57 @@
+
+<figure> <img src="https://www.mshowto.org/images/articles/2021/12/1.png"/> <figcaption> CredSSP Hatası ve çözümü - Treas.Host</figcaption> </figure>
+
+# CredSSP RDP Hatası ve Çözümü 🔐
+
+RDP (Uzak Masaüstü) bağlantılarında kullanılan **CredSSP protokolü**, kimlik bilgilerini şifreli aktarır. 2018’de yayımlanan güvenlik yamaları (CVE‑2018‑0886) bu protokolü güçlendirdi. Ancak güncel istemci ile güncellenmemiş sunucu arasında bağlantı kurarken aşağıdaki hata mesajıyla karşılaşabilirsiniz:
+
+> **"Kimlik doğrulama hatası. İstenen işlev desteklenmiyor. Bu durum CredSSP encryption oracle remediation nedeniyle olabilir."**
+
+---
+
+## CredSSP Hatasının Nedenleri Nelerdir?
+
+- **Güncelleme Uyumsuzluğu:**
+  - Hem istemci hem sunucunun güvenlik yamaları uyumlu olmalı.
+  - Aksi hâlde CredSSP, şifreli kimlik bilgilerini paylaşmaz.
+
+- **Politika Ayarları:**
+  - `Encryption Oracle Remediation` ilkesinde üç seviye vardır:
+    - `Force Updated Clients`: Sadece güncel istemciler bağlanabilir.
+    - `Mitigated`: Eski istemciler belirli sınırlarda bağlanabilir.
+    - `Vulnerable`: Tüm istemcilere izin verilir.
+
+---
+
+## CredSSP Hatası Nasıl Çözülür?
+
+### ⚙️ A) Grup İlkesi (GPO) ile Ayar
+
+1. `Win + R` tuşları → `gpedit.msc`
+2. Yol: 
+   ```
+   Bilgisayar Yapılandırması → Yönetim Şablonları → Sistem → Credentials Delegation → Encryption Oracle Remediation
+   ```
+3. Ayarı **Etkinleştir (Enabled)** ve düzeyi **Vulnerable** olarak seçin.
+4. `gpupdate /force` komutunu çalıştırın.
+
+### 🧩 B) Kayıt Defteri (Registry) ile Ayar
+
+```bash
+REG ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\CredSSP\Parameters /v AllowEncryptionOracle /t REG_DWORD /d 2 /f
+```
+
+> `2` = Vulnerable, `1` = Mitigated, `0` = Force Updated Clients
+
+## 🔐 Sonuç ve Öneriler
+
+- **En güvenli çözüm:** Tüm sistemleri güncelleyin.
+- **Acil çözüm:** GPO veya registry ile geçici bağlantıya izin verin.
+- Güvenlik için işlemler sonrası `Vulnerable` yerine daha güvenli modlara geçin.
+
+Burada yazdığımız çözümler de sonuç vermiyorsa Discord sunucumuz üzerinden bir destek talebi açabilirsiniz. 
+Üst düzey performans ve %99.98 Uptime sunan sunucularımızdan almak için https://treas.host adresini ziyaret edebilirsiniz.
+
+
+*Anahtar Kelimeler: "CredSSP Hatası", "RDP bağlantı hatası", "Encryption Oracle Remediation", "Windows RDP sorunları", "Uzak Masaüstü bağlantı çözümleri", "CredSSP registry ayarı", "CredSSP grup ilkesi"*
+
