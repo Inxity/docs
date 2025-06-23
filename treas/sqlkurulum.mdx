@@ -1,0 +1,37 @@
+# ⚙️ XAMPP ile MySQL ve PhpMyAdmin Kurulumu
+
+Bu rehberde, PHP projelerinizi kendi bilgisayarınızda çalıştırmak için XAMPP, MySQL ve phpMyAdmin kurulumu adımlarını sade ve anlaşılır şekilde anlatıyoruz.
+
+## ❓ XAMPP Nedir
+XAMPP; Apache web sunucusu, MySQL (MariaDB), PHP ve phpMyAdmin araçlarını tek pakette sunan ücretsiz bir yazılımdır. İnternet bağlantısına ihtiyaç duymadan yerel bir geliştirme ortamı oluşturmanızı sağlar.
+
+## ⬇️ Kurulum  
+1. **İndirme:**  
+   [https://www.apachefriends.org/tr](https://www.apachefriends.org/tr) adresinden Windows için XAMPP’ı indirin.  
+2. **Kurulum Sihirbazı:**  
+   - İndirilen `xampp-*-installer.exe` dosyasını çalıştırın.  
+   - Bileşen seçiminde **Apache**, **MySQL**, **phpMyAdmin** işaretli olsun.  
+   - Hedef klasör olarak `C:\xampp` önerilir.  
+   - “Finish” ile kurulumu bitirin.  
+
+## 🏁 Apache ve MySQL Başlatma  
+- XAMPP Kontrol Panel’i otomatik açılsın.  
+- **Apache** ve **MySQL** servislerinin yanındaki **Start** düğmelerine tıklayın.  
+- Yeşile dönen satırlar, servislerin çalıştığını gösterir.  
+- Test: Tarayıcıda `http://localhost/` yazarak XAMPP karşılama sayfasını görebilirsiniz.
+
+## 👨🏻‍💻 PhpMyAdmin Kullanımı  
+phpMyAdmin, MySQL veritabanlarını web arayüzünden yönetmenizi sağlar.  
+- Apache ve MySQL çalışıyorsa `http://localhost/phpmyadmin` adresine gidin  
+  veya XAMPP panelindeki MySQL satırındaki **Admin** butonuna tıklayın.  
+- **Yeni veritabanı oluştur:** Sol menüden “New” → isim gir → “Create”  
+- **Tablo oluşturma & SQL çalıştırma:** İlgili veritabanına tıklayın, “Create table” veya “SQL” sekmesini kullanın.
+
+## 🤖 PHP Dosyası Çalıştırma  
+1. Projelerinizi `C:\xampp\htdocs\` içine koyun.  
+2. Örneğin `C:\xampp\htdocs\proje\index.php`  
+3. Tarayıcıda: `http://localhost/proje/index.php`
+
+---
+
+🌐 Üst düzey performans ve %99.98 Uptime sunan sunucularımızdan almak için https://treas.host adresini ziyaret edebilirsiniz.
