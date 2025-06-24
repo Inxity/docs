@@ -23,6 +23,19 @@
           {
             "group": "Windows Rehberleri",
             "pages": [
+              "treas/xampp-nasil-kurulur",
+              "treas/credssp"
+            ]
+          },
+          {
+            "group": "Genel Rehberler",
+            "pages": [
+              "treas/vdsbilgi",
+            ]
+          },
+          {
+            "group": "Minecraft Rehberleri",
+            "pages": [
               "treas/sunucu",
               "treas/port"
             ]
